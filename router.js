@@ -5,8 +5,9 @@ const router = express.Router();
 
 const conexion = require('./database/db');
 router.get('/',(req,res)=> {
+    
 
-    conexion.query('SELECT * FROM Predio',(error,results)=> {
+    conexion.query('SELECT * FROM public."Predio"',(error,results)=>{
 
 
         if (error){
@@ -14,11 +15,10 @@ router.get('/',(req,res)=> {
 
             throw error;
         }else{
-            res.send(results);
+            res.render('index', {results:results});
         
         }
     })
-
 })
 
 module.exports=router;
